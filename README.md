@@ -52,6 +52,40 @@ This Host-based Intrusion Detection System (HIDS) provides comprehensive real-ti
 - 📊 **Alert Dashboard**: Ranked visualization of detected anomalies
 - 🖥️ **Streamlit Web UI**: Interactive dashboard for real-time monitoring
 
+## 📸 Screenshots
+
+### Top CPU Consuming Processes
+The system identifies and ranks processes by average CPU usage across the monitoring period. In this example, "System Idle Process" shows ~500% CPU (multi-core system), followed by SearchIndexer, python, and audio processes.
+
+![CPU Top Processes](logs/cpu_top_processes.jpg)
+
+---
+
+### Anomaly Detection Alerts
+ML-powered detection flagged multiple suspicious processes. Here, several instances of `msedge.exe` (Microsoft Edge) showed abnormally high CPU usage (500-800%), along with elevated activity from Python interpreters and system processes.
+
+![Anomaly Alerts](logs/alerts_summary.jpg)
+
+**Key Findings:**
+- 🚨 Multiple msedge.exe processes consuming 500-800% CPU
+- 🔍 System Idle Process flagged for unusual behavior
+- ⚠️ Python processes detected with elevated resource usage
+- 📊 Total of 10 anomalies detected in this monitoring session
+
+---
+
+### Process Time-Series Analysis
+Detailed resource tracking for flagged processes over time. This graph shows PID 15908 (msedge.exe) rapidly ramping up from 0% to over 1000% CPU usage within seconds, then stabilizing around 700-1000% before dropping.
+
+![Process Timeline](logs/usage_timeseries.jpg)
+
+**Analysis:**
+- 📈 **Spike Pattern**: Rapid CPU escalation indicates potential crypto-mining or runaway process
+- 🕐 **Duration**: Sustained high usage from 20:21:00 to 20:22:00
+- 💾 **Memory**: Remains stable (~0%) while CPU spikes - typical of CPU-bound malicious activity
+- 🎯 **Verdict**: Flagged by Isolation Forest as anomalous behavior
+
+
 ---
 
 ## 📦 Installation
